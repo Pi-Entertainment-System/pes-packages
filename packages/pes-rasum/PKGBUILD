@@ -1,0 +1,19 @@
+pkgname=('pes-rasum')
+pkgver=1
+pkgrel=1
+pkgdesc="Provides the rasum RetroAchivements checksum utility"
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+license=('GPL')
+makedepends=('gcc')
+source=('git+git://github.com/Pi-Entertainment-System/rasum')
+md5sums=('SKIP')
+
+build() {
+	cd "$srcdir/rasum"
+	gcc -lcrypto -lssl -o rasum rasum.c || exit 1
+}
+
+package() {
+	install -d "$pkgdir"/usr/bin/
+	install -m 755 rasum "$pkgdir"/usr/bin/
+}

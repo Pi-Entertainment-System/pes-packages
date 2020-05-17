@@ -1,0 +1,114 @@
+pkgbase=pes-qt5-base
+pkgname=(pes-qt5-base pes-qt5-xcb-private-headers)
+_qtver=5.14.2
+pkgver=${_qtver/-/}
+pkgrel=1
+arch=('armv7h')
+url='https://www.qt.io'
+license=('GPL3' 'LGPL3' 'FDL' 'custom')
+pkgdesc='A cross-platform application and UI framework'
+depends=('libjpeg-turbo' 'libgl' 'fontconfig' 'xdg-utils'
+         'shared-mime-info' 'libxrender' 'sqlite' 'mesa'
+         'libinput' 'libproxy' 'double-conversion' 'md4c' 'sqlite')
+makedepends=('libfbclient' 'mariadb-libs' 'sqlite' 'alsa-lib'
+              'libpulse' 'vulkan-headers')
+conflicts=('qtchooser')
+groups=('pes')
+_pkgfqn="qtbase-everywhere-src-${_qtver}"
+source=("https://download.qt.io/official_releases/qt/${pkgver%.*}/${_qtver}/submodules/${_pkgfqn}.tar.xz")
+sha256sums=('48b9e79220941665a9dd827548c6428f7aa3052ccba8f4f7e039a94aa1d2b28a')
+
+CFLAGS=" -march=armv7-a -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mthumb-interwork -I/opt/vc/include "
+LDFLAGS=" -L/opt/vc/lib -lEGL -lOpenVG -lGLESv2 -lbcm_host "
+
+prepare() {
+  cd ${_pkgfqn}
+
+  #patch -p1 -i ../qt5-base-cflags.patch # Use system CFLAGS
+
+  sed -i -e "s|^\(QMAKE_CFLAGS_RELEASE.*\)|\1 ${CFLAGS}|" \
+    mkspecs/common/gcc-base.conf
+
+  sed -i -r "s|QMAKE_CFLAGS[[:space:]]+\+=(.*?)|QMAKE_CFLAGS += \1 ${CFLAGS}|" \
+    mkspecs/common/gcc-base.conf
+
+  sed -i -e "s|^\(QMAKE_LFLAGS_RELEASE.*\)|\1 ${LDFLAGS}|" \
+    mkspecs/common/g++-unix.conf
+}
+
+build() {
+  cd ${_pkgfqn}
+
+  ./configure -confirm-license -opensource -v \
+    -prefix /opt/pes \
+    -docdir /opt/pes/share/doc/qt \
+    -headerdir /opt/pes/include/qt \
+    -archdatadir /opt/pes/lib/qt \
+    -datadir /opt/pes/share/qt \
+    -sysconfdir /etc/xdg \
+    -examplesdir /opt/pes/share/doc/qt/examples \
+    -plugin-sql-{mysql,sqlite} \
+    -system-sqlite \
+    -openssl-linked \
+    -nomake examples \
+    -no-rpath \
+    -dbus-linked \
+    -system-harfbuzz \
+    -journald \
+    -no-mimetype-database \
+    -no-use-gold-linker \
+    -no-reduce-relocations \
+    -no-pch \
+    -eglfs \
+    -no-gtk \
+    -opengl es2 \
+    -no-sse2 \
+    -no-sse3 \
+    -no-ssse3 \
+    -no-sse4.1 \
+    -no-sse4.2 \
+    -no-avx \
+    -no-avx2 \
+    -no-feature-getentropy \
+    -no-cups \
+    -no-xcb \
+    -no-xcb-xinput
+
+  make
+}
+
+package_pes-qt5-base() {
+  pkgdesc='A cross-platform application and UI framework'
+
+  cd ${_pkgfqn}
+  make INSTALL_ROOT="${pkgdir}" install
+
+  install -Dm644 LICENSE* -t "$pkgdir"/opt/pes/share/licenses/$pkgbase
+
+  # Drop QMAKE_PRL_BUILD_DIR because reference the build dir
+  find "${pkgdir}/opt/pes/lib" -type f -name '*.prl' \
+    -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' {} \;
+
+  # Fix wrong qmake path in pri file
+  sed -i "s|${srcdir}/${_pkgfqn}|/opt/pes|" \
+    "${pkgdir}"/opt/pes/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri
+
+  # Symlinks for backwards compatibility
+  for b in "${pkgdir}"/opt/pes/bin/*; do
+    ln -s $(basename $b) "${pkgdir}"/opt/pes/bin/$(basename $b)-qt5
+  done
+}
+
+package_pes-qt5-xcb-private-headers() {
+  pkgdesc='Private headers for Qt5 Xcb'
+
+  depends=("pes-qt5-base=$pkgver")
+  optdepends=()
+  groups=()
+  conflicts=()
+
+  cd ${_pkgfqn}
+  install -d -m755 "$pkgdir"/opt/pes/include/qtxcb-private
+  cp -r src/plugins/platforms/xcb/*.h "$pkgdir"/opt/pes/include/qtxcb-private/
+}
+

@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc="Provides the rasum RetroAchivements checksum utility"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 license=('GPL')
+groups=('pes')
 makedepends=('gcc')
 source=('git+git://github.com/Pi-Entertainment-System/rasum')
 md5sums=('SKIP')

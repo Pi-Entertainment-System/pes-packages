@@ -15,6 +15,6 @@ build() {
 }
 
 package() {
-	install -d "$pkgdir"/usr/bin/
-	install -m 755 rasum "$pkgdir"/usr/bin/
+	install -d "$pkgdir"/opt/pes/bin/
+	install -m 755 "$srcdir/rasum/rasum" "$pkgdir"/opt/pes/bin/
 }

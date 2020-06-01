@@ -11,10 +11,10 @@ depends=('python-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' '
 'pes-qt5-quickcontrols' 'pes-qt5-quickcontrols2')
 groups=(pes)
 source=("https://pypi.python.org/packages/source/P/PyQt5/PyQt5-$pkgver.tar.gz" 'config')
-sha256sums=('bd230c6fd699eabf1ceb51e13a8b79b74c00a80272c622427b80141a22269eb0' 'a99be75cb07a715d8506b0cc4bf2bf1dd1ccb1226598cabe880bbf30607cd474')
+sha256sums=('bd230c6fd699eabf1ceb51e13a8b79b74c00a80272c622427b80141a22269eb0' '6bd5f1102ee3fc95c7d0231e8884f623437aa8c209a8d10c64d73084a1964329')
 
 prepare() {
-  cp ${srcdir}/config ${srcdir}/PyQt5-${pkgver}  
+  cp ${srcdir}/config ${srcdir}/PyQt5-${pkgver}
 }
 
 build() {
@@ -26,11 +26,11 @@ build() {
     --confirm-license \
     --qsci-api \
     --destdir=/opt/pes/lib/python3.8/site-packages \
-    --stubsdir=/opt/pes/lib/python3.8/site-packages/PyQt5 \ 
+    --stubsdir=/opt/pes/lib/python3.8/site-packages/PyQt5 \
     --bindir=/opt/pes/bin \
     --qmake=/opt/pes/bin/qmake \
     --disable=QtPrintSupport \
-    --configuration=config  
+    --configuration=config
   make
 }
 
@@ -48,4 +48,3 @@ package(){
   python -m compileall -d / "$pkgdir"/opt/pes/lib
   python -O -m compileall -d / "$pkgdir"/opt/pes/lib
 }
-

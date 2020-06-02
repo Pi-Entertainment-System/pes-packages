@@ -37,16 +37,20 @@ build() {
 
 package(){
   install -d "$pkgdir"/opt/pes/bin
-  install -d "$pkdir"/opt/pes/lib
-  install -d "$pkdir"/opt/pes/share/sip/PyQT5
+  install -d "$pkgdir"/opt/pes/lib
+  install -d "$pkgdir"/opt/pes/share/sip/PyQT5
 
   cd PyQt5-$pkgver
   make DESTDIR="$pkgdir" INSTALL_ROOT="$pkgdir" install -j1
 
   # Remove unused py2 version of uic modules:
-  rm -r "$pkgdir"/opt/pes/lib/python*/site-packages/PyQt5/uic/port_v2
+  rm -r "$pkgdir"/opt/pes/lib/python3.8/site-packages/PyQt5/uic/port_v2
 
   # compile Python bytecode
   python -m compileall -d / "$pkgdir"/opt/pes/lib
   python -O -m compileall -d / "$pkgdir"/opt/pes/lib
+
+  # move dbus module
+  mv "$pkgdir"/usr/lib/python3.8/site-packages/dbus "$pkgdir"/opt/pes/lib/python3.8/site-packages
+  rm -rf "$pkgdir"/usr
 }

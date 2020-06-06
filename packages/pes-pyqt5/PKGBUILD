@@ -5,9 +5,9 @@ arch=('armv7h')
 url="https://riverbankcomputing.com/software/pyqt/intro"
 license=('GPL')
 pkgdesc="A set of Python bindings for the Qt5 toolkit"
-makedepends=('make' 'sip5' 'python-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
+makedepends=('make' 'sip5' 'pes-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
 'pes-qt5-quickcontrols' 'pes-qt5-quickcontrols2')
-depends=('python-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
+depends=('pes-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
 'pes-qt5-quickcontrols' 'pes-qt5-quickcontrols2')
 groups=(pes)
 source=("https://pypi.python.org/packages/source/P/PyQt5/PyQt5-$pkgver.tar.gz" 'config')

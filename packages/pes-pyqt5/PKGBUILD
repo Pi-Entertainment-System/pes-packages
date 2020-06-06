@@ -5,7 +5,7 @@ arch=('armv7h')
 url="https://riverbankcomputing.com/software/pyqt/intro"
 license=('GPL')
 pkgdesc="A set of Python bindings for the Qt5 toolkit"
-makedepends=('make' 'sip5' 'pes-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
+makedepends=('make' 'sip' 'pes-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
 'pes-qt5-quickcontrols' 'pes-qt5-quickcontrols2')
 depends=('pes-pyqt5-sip' 'python-dbus' 'pes-qt5-base' 'pes-qt5-declarative' 'pes-qt5-xmlpatterns'
 'pes-qt5-quickcontrols' 'pes-qt5-quickcontrols2')
@@ -20,6 +20,7 @@ prepare() {
 build() {
   export PATH=/opt/pes/bin:$PATH
   export LD_LIBRARY_PATH=/opt/pes/lib
+  export PYTHONPATH=/opt/pes/lib/python3.8/site-packages
 
   cd ${srcdir}/PyQt5-${pkgver}
   python ./configure.py -w --no-sip-files \

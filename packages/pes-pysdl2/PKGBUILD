@@ -1,4 +1,4 @@
-pkgname=pes-python-sdl2
+pkgname=pes-pysdl2
 _ver=0.9.7
 _verdir=rel_0_9_7
 pkgver=${_ver}

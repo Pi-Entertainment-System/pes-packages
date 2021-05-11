@@ -1,0 +1,41 @@
+# Based upon Arch Linux Arm package
+# Adds Python module support and installs into /opt/pes
+
+pkgname=pes-libcec
+_pkgname=libcec
+pkgver=6.0.2
+pkgrel=3
+pkgdesc="Pulse-Eight's libcec for the Pulse-Eight USB-CEC adapter using kms with Python support"
+arch=('armv6h' 'armv7h' 'aarch64')
+url="http://libcec.pulse-eight.com/"
+license=('GPL')
+makedepends=('cmake')
+depends=('udev' 'lockdev' 'p8-platform' 'libxrandr' 'raspberrypi-firmware' 'python')
+provides=('pes-libcec')
+conflicts=('pes-libcec')
+source=("$_pkgname-$pkgver.tar.gz::https://github.com/Pulse-Eight/$_pkgname/archive/$_pkgname-$pkgver.tar.gz")
+sha256sums=('090696d7a4fb772d7acebbb06f91ab92e025531c7c91824046b9e4e71ecb3377')
+
+build() {
+    cd "$_pkgname-$_pkgname-$pkgver"
+
+    mkdir build
+    cd build
+    _args=(
+        -DCMAKE_BUILD_TYPE=Release
+        -DBUILD_SHARED_LIBS=1
+        -DCMAKE_INSTALL_PREFIX=/opt/pes
+        -DCMAKE_INSTALL_LIBDIR=/opt/pes/lib
+        -DCMAKE_INSTALL_LIBDIR_NOARCH=/opt/pes/lib
+        -DHAVE_LINUX_API=1
+        -DPYTHON_INCLUDE_DIR=/usr/include/python3.9
+        -DPYTHON_LIBRARY=/usr/lib/libpython3.9.so
+      )
+    cmake "${_args[@]}" ..
+    make
+}
+
+package() {
+    cd "$_pkgname-$_pkgname-$pkgver/build"
+    make DESTDIR="$pkgdir" install
+}

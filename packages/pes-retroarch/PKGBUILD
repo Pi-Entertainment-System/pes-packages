@@ -1,0 +1,53 @@
+pkgname=pes-retroarch
+pkgver=1.9.2
+pkgrel=1
+arch=('armv7h')
+url='https://www.retroarch.com'
+license=('GPLv3')
+pkgdesc='Cross-platform, sophisticated frontend for the libretro API'
+depends=('alsa-lib' 'freetype2' 'glib2' 'harfbuzz' 'libdrm' 'libpng' 'libusb' 'mesa' 'p7zip' 'zlib')
+makedepends=('gcc' 'make')
+groups=('pes')
+source=("https://github.com/libretro/RetroArch/archive/refs/tags/v${pkgver}.tar.gz" 'retroarch.cfg.patch')
+sha256sums=('SKIP' '749e6e4c8c16c84cace7f8523604f9113999311df9234881f6223d0a65a20e2a')
+_prefix=/opt/pes
+
+prepare() {
+  cd RetroArch-${pkgver}
+  patch -i ../retroarch.cfg.patch
+}
+
+build() {
+  export CFLAGS="-O2 -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+  export CXXFLAGS=$CFLAGS
+
+  cd RetroArch-${pkgver}
+
+  ./configure --prefix=${_prefix} \
+    --disable-discord \
+    --disable-ffmpeg \
+    --enable-floathard \
+    --enable-kms \
+    --enable-neon \
+    --enable-opengl \
+    --disable-opengl1 \
+    --enable-opengles \
+    --enable-opengles3 \
+    --enable-opengl_core \
+    --enable-networking \
+    --disable-pulse \
+    --disable-qt \
+    --disable-sdl \
+    --disable-sdl2 \
+    --enable-udev \
+    --disable-videocore \
+    --disable-x11 \
+    --disable-xmb
+
+    make V=1
+  }
+
+  package() {
+    cd RetroArch-${pkgver}
+    make DESTDIR=${pkgdir} V=1 install
+  }

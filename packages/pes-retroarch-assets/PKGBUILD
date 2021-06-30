@@ -1,0 +1,22 @@
+pkgname=('pes-retroarch-assets')
+pkgver=376
+pkgrel=1
+epoch=1
+pkgdesc="Assets needed by RetroArch"
+arch=('any')
+license=('CC-BY-4.0')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='8d114dd55b0a357efec12d34d02dfe190a6ccc3a'
+source=("git+https://github.com/libretro/retroarch-assets.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd retroarch-assets
+  git rev-list --count HEAD
+}
+
+package() {
+  cd retroarch-assets 
+  make INSTALLDIR=${pkgdir}/opt/pes/share/retroarch/assets install
+}

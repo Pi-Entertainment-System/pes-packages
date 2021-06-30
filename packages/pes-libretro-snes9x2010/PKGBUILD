@@ -1,0 +1,30 @@
+pkgname=('pes-libretro-snes9x2010')
+pkgver=1040
+pkgrel=1
+epoch=1
+pkgdesc="SNES emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='753abccb223a040b057feec4e163f0c14a7faa29'
+source=("git+https://github.com/libretro/snes9x2010.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd snes9x2010
+  git rev-list --count HEAD
+}
+
+build() {
+  export CFLAGS="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -O3"
+  export CXXFLAGS=$CFLAGS
+  cd snes9x2010
+  make platform=rpi2 -j -f Makefile.libretro
+}
+
+package() {
+  cd snes9x2010
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp snes9x2010_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

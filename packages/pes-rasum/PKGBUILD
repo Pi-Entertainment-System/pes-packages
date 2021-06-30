@@ -28,4 +28,5 @@ build() {
 package() {
 	install -d "$pkgdir"/opt/pes/bin/
 	install -m 755 "$srcdir/rasum/rasum" "$pkgdir"/opt/pes/bin/
+	install -Dm644 "$srcdir/rasum/LICENSE" -t "$pkgdir"/opt/pes/share/licenses/$pkgbase
 }

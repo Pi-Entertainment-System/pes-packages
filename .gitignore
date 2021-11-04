@@ -1,4 +1,5 @@
 packages/*/pkg
 packages/*/src
+packages/*/*.tar.gz*
 packages/*/*.tar.xz*
 packages/pes-rasum/rasum

@@ -1,26 +1,25 @@
 pkgname=pes-pysdl2
-_ver=0.9.7
-_verdir=rel_0_9_7
+_ver=0.9.9
 pkgver=${_ver}
 pkgrel=1
 arch=('armv7h')
 url='https://www.libsdl.org'
 license=('CC0 Public Domain Dedication')
 pkgdesc='Python SDL2 library'
-depends=('python' 'pes-sdl2')
-makedepends=('python' 'pes-sdl2')
+depends=('python' 'sdl2')
+makedepends=('python' 'sdl2')
 groups=('pes')
-source=("https://github.com/marcusva/py-sdl2/archive/${_verdir}.tar.gz")
-sha256sums=('73931c4e78339ac3b91da626dc65681b65e0a6b8e06b5fcf13f9352635b08691')
+source=("https://github.com/marcusva/py-sdl2/archive/refs/tags/${_ver}.tar.gz")
+sha256sums=('2b32a4c28369ea52ebb1051b85202e9fd30590fd1a187dde93381f021e005bc3')
 
 build() {
-  cd $srcdir/py-sdl2-${_verdir}
+  cd $srcdir/py-sdl2-${_ver}
   python setup.py build
 }
 
 package() {
   mkdir -p /opt/pes
 
-  cd $srcdir/py-sdl2-${_verdir}
+  cd $srcdir/py-sdl2-${_ver}
   python setup.py install --root="$pkgdir" --prefix=/opt/pes --optimize=1 --skip-build
 }

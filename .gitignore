@@ -3,3 +3,4 @@ packages/*/src
 packages/*/*.tar.gz*
 packages/*/*.tar.xz*
 packages/pes-rasum/rasum
+packages/pes-retroarch-assets/retroarch-assets

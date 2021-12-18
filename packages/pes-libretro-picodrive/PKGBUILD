@@ -1,0 +1,40 @@
+pkgname=('pes-libretro-picodrive')
+pkgver=1263
+pkgrel=1
+epoch=1
+pkgdesc="Sega Master System/MegaDrive/Genesis/Mega CD/32X emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+#_commit='55e7855e21c28410c27c28349b20659ed62a0294'
+#_commit='d44605c269e645a6734089ac1f95116a5ce57e0b'
+_commit='c1ee525ac9fbd5f091a2cf34879131f3e00bf176'
+source=("libretro-picodrive::git+https://github.com/libretro/picodrive.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd libretro-picodrive
+  git rev-list --count HEAD
+}
+
+#prepare() {
+#  cd picodrive
+#  git submodule init
+#  git submodule update
+#}
+
+build() {
+  #export CFLAGS="-march=armv7-a -mfloat-abi=hard -mfpu=vfpv3-d16"
+  #export CXXFLAGS=$CFLAGS
+  #cd picodrive
+  #make -j -f Makefile.libretro platform=armv ARM_ASM=1 use_fame=0 use_cyclone=1 use_sh2drc=1 use_svpdrc=1 use_cz80=1 use_drz80=0
+  #make -C ../cpu/cyclone CONFIG_FILE=../cyclone_config.h
+  make -C libretro-picodrive -f Makefile.libretro
+}
+
+package() {
+  cd libretro-picodrive
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp picodrive_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

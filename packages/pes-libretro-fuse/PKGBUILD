@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-fuse')
+pkgver=277
+pkgrel=1
+epoch=1
+pkgdesc="ZX Spectrum emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='23f7db522e1b9ad22a142e828d7c3631eb653142'
+source=("git+https://github.com/libretro/fuse-libretro.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd fuse-libretro
+  git rev-list --count HEAD
+}
+
+build() {
+  cd fuse-libretro
+  make -f Makefile.libretro
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp fuse-libretro/fuse_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

@@ -14,6 +14,7 @@ packages/pes-libretro-mupen64plus-nx/mupen64plus-libretro-nx
 packages/pes-libretro-pcsx_rearmed/pcsx_rearmed
 packages/pes-libretro-picodrive/libretro-picodrive
 packages/pes-libretro-snes9x2010/snes9x2010
+packages/pes-libretro-stella2014/stella2014-libretro
 packages/pes-rasum/rasum
 packages/pes-retroarch-assets/retroarch-assets
 repo/pes*

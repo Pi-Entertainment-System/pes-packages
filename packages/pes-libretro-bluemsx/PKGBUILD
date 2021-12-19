@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-blue-msx')
+pkgver=333
+pkgrel=1
+epoch=1
+pkgdesc="MSX emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='cfc1df4d026387883f21994bcce603c4a6be8730'
+source=("git+https://github.com/libretro/blueMSX-libretro.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd blueMSX-libretro
+  git rev-list --count HEAD
+}
+
+build() {
+  cd blueMSX-libretro
+  make platform=rpi2
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp blueMSX-libretro/bluemsx_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

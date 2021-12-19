@@ -5,6 +5,7 @@ packages/*/*.tar.xz*
 packages/pes-libretro-beetle-pce-fast/beetle-pce-fast-libretro
 packages/pes-libretro-bluemsx/blueMSX-libretro
 packages/pes-libretro-fceu-next/fceu-next
+packages/pes-libretro-fba-neogeo/fbalpha2012_neogeo
 packages/pes-libretro-fuse/fuse-libretro
 packages/pes-libretro-gambatte/gambatte-libretro
 packages/pes-libretro-genesis-plus-gx/Genesis-Plus-GX

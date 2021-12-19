@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-gambatte')
+pkgver=953
+pkgrel=1
+epoch=1
+pkgdesc="Nintendo GameBoy emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='2a0977b0041e6eb5fca3701a2e3f00b0cefd4e58'
+source=("git+https://github.com/libretro/gambatte-libretro.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd gambatte-libretro
+  git rev-list --count HEAD
+}
+
+build() {
+  cd gambatte-libretro
+  make -f Makefile.libretro
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp gambatte-libretro/gambatte_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

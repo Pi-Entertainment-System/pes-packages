@@ -51,5 +51,6 @@ fi
 pkg=`ls -1 ./*.tar.xz`
 mv ./*.tar.xz* $DIR/repo/
 
+cd $DIR/repo
 repo-add --sign --key $KEY pes.db.tar.gz "$pkg"
 

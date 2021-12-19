@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-gpsp')
+pkgver=629
+pkgrel=1
+epoch=1
+pkgdesc="Nintendo GameBoy Advance emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='cce51c948d65dfd8a3e5cfded06cc08257a37490'
+source=("git+https://github.com/libretro/gpsp.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd gpsp
+  git rev-list --count HEAD
+}
+
+build() {
+  cd gpsp
+  make
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp gpsp/gpsp_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

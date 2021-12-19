@@ -3,6 +3,7 @@ packages/*/src
 packages/*/*.tar.gz*
 packages/*/*.tar.xz*
 packages/pes-libretro-fceu-next/fceu-next
+packages/pes-libretro-genesis-plus-gx/Genesis-Plus-GX
 packages/pes-libretro-mupen64plus-nx/mupen64plus-libretro-nx
 packages/pes-libretro-pcsx_rearmed/pcsx_rearmed
 packages/pes-libretro-picodrive/libretro-picodrive

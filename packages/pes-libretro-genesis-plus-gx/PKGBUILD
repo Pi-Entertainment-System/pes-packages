@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-genesis-plus-gx')
+pkgver=1876
+pkgrel=1
+epoch=1
+pkgdesc="Sega Master System/Genesis/Mega Drive emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='41b097493482697ea40b933fe1a4b56652ad3a7b'
+source=("git+https://github.com/libretro/Genesis-Plus-GX.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd Genesis-Plus-GX
+  git rev-list --count HEAD
+}
+
+build() {
+  cd Genesis-Plus-GX
+  make -f Makefile.libretro
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp Genesis-Plus-GX/genesis_plus_gx_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

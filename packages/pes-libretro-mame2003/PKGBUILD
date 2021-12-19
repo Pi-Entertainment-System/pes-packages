@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-mame2003')
+pkgver=1147
+pkgrel=1
+epoch=1
+pkgdesc="MAME 2003 emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='afddcb059bb4112a61aae13f3140616f3567e372'
+source=("git+https://github.com/libretro/mame2003-libretro.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd mame2003-libretro
+  git rev-list --count HEAD
+}
+
+build() {
+  cd mame2003-libretro
+  make
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp mame2003-libretro/mame2003_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

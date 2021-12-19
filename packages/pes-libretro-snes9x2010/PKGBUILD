@@ -20,7 +20,7 @@ build() {
   export CFLAGS="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -O3"
   export CXXFLAGS=$CFLAGS
   cd snes9x2010
-  make platform=rpi2 -j -f Makefile.libretro
+  make platform=rpi2 -f Makefile.libretro
 }
 
 package() {

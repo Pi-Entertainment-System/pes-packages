@@ -1,0 +1,27 @@
+pkgname=('pes-libretro-beetle-pce-fast')
+pkgver=1157
+pkgrel=1
+epoch=1
+pkgdesc="PC Engine emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='eb57e0c21f082de9f0ba86f26b3c716a2ed18b14'
+source=("git+https://github.com/libretro/beetle-pce-fast-libretro.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd beetle-pce-fast-libretro
+  git rev-list --count HEAD
+}
+
+build() {
+  cd beetle-pce-fast-libretro
+  make
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp beetle-pce-fast-libretro/mednafen_pce_fast_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

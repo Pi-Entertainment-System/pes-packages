@@ -2,6 +2,7 @@ packages/*/pkg
 packages/*/src
 packages/*/*.tar.gz*
 packages/*/*.tar.xz*
+packages/pes-libretro-beetle-pce-fast/beetle-pce-fast-libretro
 packages/pes-libretro-fceu-next/fceu-next
 packages/pes-libretro-genesis-plus-gx/Genesis-Plus-GX
 packages/pes-libretro-mupen64plus-nx/mupen64plus-libretro-nx

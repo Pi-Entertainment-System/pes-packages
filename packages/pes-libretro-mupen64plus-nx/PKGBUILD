@@ -1,0 +1,33 @@
+pkgname=('pes-libretro-mupen64plus-nx')
+pkgver=167
+pkgrel=1
+epoch=1
+pkgdesc="Nintentdo 64 emulator for RetroArch"
+arch=('armv7h')
+license=('Custom')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='16d96924d8a31483bfd0b2d1bc39dc6e319d4352'
+source=("git+https://github.com/libretro/mupen64plus-libretro-nx.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd mupen64plus-libretro-nx
+  git rev-list --count HEAD
+}
+
+prepare() {
+  cd mupen64plus-libretro-nx
+  # checkout GGC 10 patches
+  git checkout a9a34b89cd63848e08eb117423148b135e420202  mupen64plus-core/src/main/workqueue.h mupen64plus-core/src/device/r4300/idec.h
+}
+
+build() {
+  cd mupen64plus-libretro-nx
+  make WITH_DYNAREC=arm platform=rpi4 V=1
+}
+
+package() {
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp mupen64plus-libretro-nx/mupen64plus_next_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

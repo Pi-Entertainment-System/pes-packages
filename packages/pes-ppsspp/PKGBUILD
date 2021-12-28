@@ -1,0 +1,94 @@
+pkgname=('pes-ppsspp')
+pkgver=1.12.3
+pkgrel=1
+pkgdesc="Standalone Sony PSP emulator"
+arch=('armv7h')
+license=('GPLv2')
+groups=('pes')
+depends=('sdl2')
+makedepends=('gcc' 'sdl2')
+source=(
+	"git+https://github.com/hrydgard/ppsspp#tag=v${pkgver}" \
+	'SDLJoystick.cpp.patch' \
+	'linux_rpi.sh.patch' \
+	'git+https://github.com/hrydgard/ppsspp-mac-sdl' \
+        'git+https://github.com/unknownbrackets/ppsspp-debugger.git' \
+        'git+https://github.com/hrydgard/minidx9.git' \
+	'git+https://github.com/KhronosGroup/SPIRV-Cross.git' \
+	'git+https://github.com/Kingcom/armips.git' \
+	'git+https://github.com/discordapp/discord-rpc.git' \
+	'git+https://github.com/hrydgard/glslang.git' \
+	'git+https://github.com/hrydgard/miniupnp.git' \
+	'git+https://github.com/hrydgard/ppsspp-freetype.git' \
+	'git+https://github.com/Tencent/rapidjson.git' \
+	'git+https://github.com/facebook/zstd.git' \
+	'git+https://github.com/hrydgard/ppsspp-ffmpeg.git' \
+	'git+https://github.com/hrydgard/pspautotests.git' \
+)
+sha256sums=(
+	'SKIP' \
+	'a7c680584b2f3d86323772265279e269e3b459d5c7ddb1e2320825d90ca24a98' \
+	'd5ee2f2a760ced76aa2756306a39387a94dbd74f5be18c1171d68752cb64e28e' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+	'SKIP' \
+)
+
+prepare() {
+  cd ppsspp
+  git submodule init
+  git config submodule.SDL/macOS.url "$srcdir/ppsspp-mac-sdl"
+  git config submodule.ppsspp-debugger.url "$srcdir/ppsspp-debugger"
+  git config submodule.dx9sdk.url "$srcdir/minidx9"
+  git config submodule.ext/SPIRV-Cross.url "$srcdir/SPIRV-Cross"
+  git config submodule.ext/armips.url "$srcdir/armips"
+  git config submodule.ext/discord-rpc.url "$srcdir/discord-rpc"
+  git config submodule.glslang.url "$srcdir/glslang"
+  git config submodule.ext/miniupnp.url "$srcdir/miniupnp"
+  git config submodule.ext/native/tools/prebuilt.url "$srcdir/ppsspp-freetype"
+  git config submodule.rapidjson.url "$srcdir/rapidjson"
+  git config submodule.zstd.url "$srcdir/zstd"
+  git config submodule.ppsspp-ffmpeg.url "$srcdir/ppsspp-ffmpeg"
+  git config submodule.pspautotests.url "$srcdir/pspautotests"
+  git submodule update
+  # apply patches
+  cd ffmpeg
+  patch < $srcdir/linux_rpi.sh.patch
+  cd ../SDL
+  patch < $srcdir/SDLJoystick.cpp.patch
+}
+
+build() {
+  cd ppsspp
+  cd ffmpeg
+  ./linux_rpi.sh
+  cd ../
+  mkdir -p build
+  cd build
+  cmake -D CMAKE_INSTALL_PREFIX:PATH=/opt/pes \
+  -DARMV7=ON \
+  -DUSING_EGL=OFF \
+  -DUSING_GLES2=ON \
+  -DUSING_X11_VULKAN=OFF \
+  -DUSE_WAYLAND_WSI=OFF \
+  -DUSING_FBDEV=ON \
+  -DUSING_QT_UI='OFF' ..
+  make
+}
+
+package () {
+  cd ppsspp
+  install -d "$pkgdir"/opt/pes/ppsspp
+  cp -r build/assets "$pkgdir"/opt/pes/ppsspp/
+  cp build/PPSSPPSDL "$pkgdir"/opt/pes/ppsspp/
+}

@@ -1,7 +1,7 @@
 pkgname=('pes-rasum')
 pkgver=8
 pkgrel=1
-pkgdesc="Provides the rasum RetroAchivements checksum utility"
+pkgdesc="Provides the rasum RetroAchievements checksum utility"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 license=('GPL')
 groups=('pes')

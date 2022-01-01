@@ -7,3 +7,6 @@
 [submodule "packages/python-humanfriendly"]
 	path = packages/python-humanfriendly
 	url = https://aur.archlinux.org/python-humanfriendly.git
+[submodule "packages/python-pysdl2"]
+	path = packages/python-pysdl2
+	url = https://aur.archlinux.org/python-pysdl2.git

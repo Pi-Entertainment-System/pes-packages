@@ -1,2 +1,0 @@
-SUBSYSTEM=="usb", ATTRS{idVendor}=="054c", ENV{idProduct}="0268", RUN+="/opt/pes/sbin/sixpair"
-SUBSYSTEM=="input", ATTR{name}=="PLAYSTATION(R)3 Controller*", RUN+="/opt/pes/sbin/sixpair"

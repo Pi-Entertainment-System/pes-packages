@@ -1,3 +1,9 @@
 [submodule "packages/bluez-utils-compat"]
 	path = packages/bluez-utils-compat
 	url = https://aur.archlinux.org/bluez-utils-compat.git
+[submodule "packages/python-coloredlogs"]
+	path = packages/python-coloredlogs
+	url = https://aur.archlinux.org/python-coloredlogs.git
+[submodule "packages/python-humanfriendly"]
+	path = packages/python-humanfriendly
+	url = https://aur.archlinux.org/python-humanfriendly.git

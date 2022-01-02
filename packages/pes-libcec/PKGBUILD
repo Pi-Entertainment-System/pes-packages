@@ -4,7 +4,7 @@
 pkgname=pes-libcec
 _pkgname=libcec
 pkgver=6.0.2
-pkgrel=3
+pkgrel=4
 pkgdesc="Pulse-Eight's libcec for the Pulse-Eight USB-CEC adapter using kms with Python support"
 arch=('armv6h' 'armv7h' 'aarch64')
 url="http://libcec.pulse-eight.com/"
@@ -19,6 +19,8 @@ sha256sums=('090696d7a4fb772d7acebbb06f91ab92e025531c7c91824046b9e4e71ecb3377')
 build() {
     cd "$_pkgname-$_pkgname-$pkgver"
 
+    pythonVer=`python -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))'`
+
     mkdir build
     cd build
     _args=(
@@ -28,8 +30,8 @@ build() {
         -DCMAKE_INSTALL_LIBDIR=/opt/pes/lib
         -DCMAKE_INSTALL_LIBDIR_NOARCH=/opt/pes/lib
         -DHAVE_LINUX_API=1
-        -DPYTHON_INCLUDE_DIR=/usr/include/python3.9
-        -DPYTHON_LIBRARY=/usr/lib/libpython3.9.so
+        -DPYTHON_INCLUDE_DIR=/usr/include/python${pythonVer}
+        -DPYTHON_LIBRARY=/usr/lib/libpython${pythonVer}.so
       )
     cmake "${_args[@]}" ..
     make

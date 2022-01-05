@@ -2,6 +2,7 @@ packages/*/pkg
 packages/*/src
 packages/*/*.tar.gz*
 packages/*/*.tar.xz*
+packages/pes-kodi-addon-peripheral-joystick/peripheral.joystick
 packages/pes-libretro-beetle-pce-fast/beetle-pce-fast-libretro
 packages/pes-libretro-bluemsx/blueMSX-libretro
 packages/pes-libretro-fceu-next/fceu-next

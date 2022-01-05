@@ -1,0 +1,27 @@
+pkgname=pes-kodi-addon-peripheral-joystick
+pkgver=19.0
+pkgrel=1
+pkgdesc="Provides Kodi 19 joystick support"
+arch=('x86_64' 'armv6h' 'armv7h')
+license=('GPL2')
+depends=('kodi' 'p8-platform')
+makedepends=('git' 'cmake' 'kodi-platform' 'kodi-dev')
+conflicts=('kodi-addon-peripheral-joystick' 'kodi-addon-peripheral-joystick-git')
+provides=('kodi-addon-peripheral-joystick')
+source=("git+https://github.com/xbmc/peripheral.joystick#tag=${pkgver}.${pkgrel}-Matrix")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}/peripheral.joystick"
+  cmake \
+    -DADDONS_TO_BUILD=peripheral.joystick \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib/kodi \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_MODULE_PATH=/usr/lib/kodi
+}
+
+package() {
+  cd "${srcdir}/peripheral.joystick"
+  make prefix=/usr DESTDIR="$pkgdir" install
+}

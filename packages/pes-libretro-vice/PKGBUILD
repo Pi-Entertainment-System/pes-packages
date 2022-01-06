@@ -1,0 +1,28 @@
+pkgname=('pes-libretro-vice')
+pkgver=20992
+pkgrel=1
+epoch=1
+pkgdesc="C64 emulator for RetroArch"
+arch=('armv7h')
+license=('GPLv2')
+groups=('pes')
+depends=('pes-retroarch')
+_commit='0d1cf843e9751496682fc4ea425839834cab9b30'
+source=("git+https://github.com/libretro/vice-libretro.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd vice-libretro
+  git rev-list --count HEAD
+}
+
+build() {
+  cd vice-libretro
+  make
+}
+
+package() {
+  cd vice-libretro
+  install -d "$pkgdir"/opt/pes/lib/libretro
+  cp vice_x64_libretro.so ${pkgdir}/opt/pes/lib/libretro
+}

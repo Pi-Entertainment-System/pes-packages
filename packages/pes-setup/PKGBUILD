@@ -1,0 +1,21 @@
+pkgname=('pes-setup')
+pkgver=3.0
+pkgrel=1
+pkgdesc="Pi Entertainment System (PES) Set-Up: Provides scripts and supporting infrastructure to set-up PES"
+arch=('armv7h')
+license=('GPLv3')
+groups=('pes')
+depends=('ansible')
+_commit='ac538bbd14947aeb27082b2194a227abcd654351'
+source=("git+https://github.com/Pi-Entertainment-System/pes-setup.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+#build() {
+#  echo "No build required" 
+#}
+
+package() {
+  install -d "$pkgdir"/opt/pes/set-up
+  cd "${srcdir}/pes-setup"
+  cp -r ./* "$pkgdir"/opt/pes/set-up
+}

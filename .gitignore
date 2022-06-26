@@ -34,6 +34,7 @@ packages/pes-ppsspp/rapidjson
 packages/pes-ppsspp/zstd
 packages/pes-rasum/rasum
 packages/pes-retroarch-assets/retroarch-assets
+packages/pes-retroarch-coreinfo/libretro-core-info
 packages/pes-setup/pes-setup
 repo/pes*
 repo/python*

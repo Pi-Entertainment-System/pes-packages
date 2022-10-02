@@ -20,7 +20,7 @@ build() {
     echo "Using existing PES database"
   else
     echo "Creating PES database..."
-    bin/populate-db -v -d src/pes/data -m -r -g --match
+    bin/populate-db.py -v -d src/pes/data -m -r -g --match
   fi
 }
 

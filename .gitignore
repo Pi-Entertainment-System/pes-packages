@@ -18,6 +18,7 @@ packages/pes-libretro-picodrive/libretro-picodrive
 packages/pes-libretro-snes9x2010/snes9x2010
 packages/pes-libretro-stella2014/stella2014-libretro
 packages/pes-libretro-vice/vice-libretro
+packages/pes-gui/pes-gui
 packages/pes-ppsspp/SPIRV-Cross
 packages/pes-ppsspp/armips
 packages/pes-ppsspp/discord-rpc

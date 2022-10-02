@@ -1,0 +1,20 @@
+# Maintainer: Neil Munday <neil at mundayweb dot com>
+
+pkgname=pes-gui
+pkgver=3.0
+pkgrel=1
+pkgdesc="Pi Entertainment System (PES) GUI for gaming emulators"
+groups=("pes")
+arch=("any")
+url="https://github.com/Pi-Entertainment-System/pes-gui"
+license=("GPL")
+depends=("python" "python-pyqt5" "python-pysdl2" "pes-rasum" "python-setuptools")
+optdepends=("python-humanfriendly" "pes-libcec")
+_commit='2dc8bad7a950319c48b45ab09b60bab0bbd5ad58'
+source=("git+https://github.com/Pi-Entertainment-System/pes-gui.git#commit=${_commit}")
+sha256sums=('SKIP')
+
+package() {
+  cd "${srcdir}/pes-gui"
+  python setup.py install --root="${pkgdir}" --prefix="/opt/pes"
+}

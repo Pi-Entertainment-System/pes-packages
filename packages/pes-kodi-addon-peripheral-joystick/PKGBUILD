@@ -1,6 +1,6 @@
 pkgname=pes-kodi-addon-peripheral-joystick
 pkgver=19.0
-pkgrel=1
+pkgrel=3
 pkgdesc="Provides Kodi 19 joystick support"
 arch=('x86_64' 'armv6h' 'armv7h')
 license=('GPL2')

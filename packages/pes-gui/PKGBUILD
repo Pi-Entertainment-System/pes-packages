@@ -10,7 +10,7 @@ url="https://github.com/Pi-Entertainment-System/pes-gui"
 license=("GPL")
 depends=("python" "python-pyqt5" "python-pysdl2" "pes-rasum" "python-setuptools")
 optdepends=("python-humanfriendly" "pes-libcec")
-_commit='2dc8bad7a950319c48b45ab09b60bab0bbd5ad58'
+_commit='bcaaa4d971a357c335e0bd1ebf3a4d950e2da1b0'
 source=("git+https://github.com/Pi-Entertainment-System/pes-gui.git#commit=${_commit}")
 sha256sums=('SKIP')
 
@@ -20,7 +20,7 @@ build() {
     echo "Using existing PES database"
   else
     echo "Creating PES database..."
-    bin/populate-db.py -v -d src/pes/data -m -r -g --match
+    PYTHONPATH=src bin/populate-db.py -v -d src/pes/data -m -r -g --match
   fi
 }
 

@@ -1,5 +1,5 @@
 pkgname=pes-retroarch
-pkgver=1.10.3
+pkgver=1.14.0
 pkgrel=1
 arch=('armv7h')
 url='https://www.retroarch.com'

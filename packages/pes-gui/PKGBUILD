@@ -10,7 +10,7 @@ url="https://github.com/Pi-Entertainment-System/pes-gui"
 license=("GPL")
 depends=("python" "python-pyqt5" "python-pysdl2" "pes-rasum" "python-setuptools")
 optdepends=("python-humanfriendly" "pes-libcec")
-_commit='bcaaa4d971a357c335e0bd1ebf3a4d950e2da1b0'
+_commit='3e1a4ef1fc3d2f861b4e9d031fc2333275dfb417'
 source=("git+https://github.com/Pi-Entertainment-System/pes-gui.git#commit=${_commit}")
 sha256sums=('SKIP')
 

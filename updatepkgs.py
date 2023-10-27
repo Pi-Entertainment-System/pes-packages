@@ -109,7 +109,6 @@ if __name__ == "__main__":
                 logging.info("%s can be updated", pkg_name)
                 with open(path, "w") as f:
                     line_counter = 0
-                    print(lines)
                     for line in lines:
                         if line_counter == commit_line:
                             f.write(f"_commit='{branch.commit.sha}'\n")

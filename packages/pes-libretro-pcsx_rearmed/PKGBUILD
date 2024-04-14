@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-pcsx_rearmed')
-pkgver=1933
+pkgver=2489
 pkgrel=1
 epoch=1
 pkgdesc="Sony PlayStation emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='ebed7428a3e7e817bb4befe7fdfc1f5681577e50'
+_commit='501a8ca6852cd6c7d892ad321ebeb4b6950fd3aa'
 source=("git+https://github.com/libretro/pcsx_rearmed.git#commit=${_commit}")
 sha256sums=('SKIP')
 

@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-mupen64plus-nx')
-pkgver=167
+pkgver=454
 pkgrel=1
 epoch=1
 pkgdesc="Nintentdo 64 emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='16d96924d8a31483bfd0b2d1bc39dc6e319d4352'
+_commit='4d270850bd09f8630110da701b73107e45a6e202'
 source=("git+https://github.com/libretro/mupen64plus-libretro-nx.git#commit=${_commit}")
 sha256sums=('SKIP')
 

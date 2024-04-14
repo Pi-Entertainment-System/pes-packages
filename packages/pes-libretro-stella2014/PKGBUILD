@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-stella2014')
-pkgver=291
+pkgver=298
 pkgrel=1
 epoch=1
 pkgdesc="Atari 2600 emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='934c7a2a44ef038af529b68950ddba4f7ea3478e'
+_commit='8ab051edd4816f33a5631d230d54059eeed52c5f'
 source=("git+https://github.com/libretro/stella2014-libretro.git#commit=${_commit}")
 sha256sums=('SKIP')
 

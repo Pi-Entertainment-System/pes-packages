@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-fba2012-neogeo')
-pkgver=194
+pkgver=195
 pkgrel=1
 epoch=1
 pkgdesc="Neo Geo emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='dc973ec25c6929e3ac47a0aac54fcde75b4b9bd4'
+_commit='1bdb32ba0c44a0efa8b9653a5f1856dcd8b21075'
 source=("git+https://github.com/libretro/fbalpha2012_neogeo.git#commit=${_commit}")
 sha256sums=('SKIP')
 

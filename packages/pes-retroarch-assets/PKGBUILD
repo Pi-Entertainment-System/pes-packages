@@ -1,5 +1,5 @@
 pkgname=('pes-retroarch-assets')
-pkgver=428
+pkgver=474
 pkgrel=1
 epoch=1
 pkgdesc="Assets needed by RetroArch"
@@ -7,7 +7,7 @@ arch=('any')
 license=('CC-BY-4.0')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='1daf54ede25763c3ae196303d9dc27610a2338a7'
+_commit='39c44632e3be156246f2bd34cff08ac9f842126e'
 source=("git+https://github.com/libretro/retroarch-assets.git#commit=${_commit}")
 sha256sums=('SKIP')
 

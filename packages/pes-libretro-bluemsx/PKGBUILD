@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-blue-msx')
-pkgver=333
+pkgver=341
 pkgrel=1
 epoch=1
 pkgdesc="MSX emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='cfc1df4d026387883f21994bcce603c4a6be8730'
+_commit='e21bf74bddb79ad1bbe20b4d964e7515269c669b'
 source=("git+https://github.com/libretro/blueMSX-libretro.git#commit=${_commit}")
 sha256sums=('SKIP')
 

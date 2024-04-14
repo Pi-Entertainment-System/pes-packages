@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-beetle-pce-fast')
-pkgver=1157
+pkgver=1231
 pkgrel=1
 epoch=1
 pkgdesc="PC Engine emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='eb57e0c21f082de9f0ba86f26b3c716a2ed18b14'
+_commit='1ce7a4a941b10aa0c2973cb441b89ee99e2c8d0e'
 source=("git+https://github.com/libretro/beetle-pce-fast-libretro.git#commit=${_commit}")
 sha256sums=('SKIP')
 

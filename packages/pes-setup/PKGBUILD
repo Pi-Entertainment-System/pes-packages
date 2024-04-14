@@ -6,7 +6,7 @@ arch=('armv7h')
 license=('GPLv3')
 groups=('pes')
 depends=('ansible')
-_commit='f197599f0f1d5b97d4522095db20748e30590711'
+_commit='953e61a589803447a7f08c0fea859cdd0ebc2163'
 source=("git+https://github.com/Pi-Entertainment-System/pes-setup.git#commit=${_commit}")
 sha256sums=('SKIP')
 

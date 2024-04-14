@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-gpsp')
-pkgver=629
+pkgver=773
 pkgrel=1
 epoch=1
 pkgdesc="Nintendo GameBoy Advance emulator for RetroArch"
@@ -7,7 +7,7 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='cce51c948d65dfd8a3e5cfded06cc08257a37490'
+_commit='eaf8b94702c5ded2fe3a3fc6a7f9718652fe8595'
 source=("git+https://github.com/libretro/gpsp.git#commit=${_commit}")
 sha256sums=('SKIP')
 

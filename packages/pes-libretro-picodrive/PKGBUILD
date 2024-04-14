@@ -1,5 +1,5 @@
 pkgname=('pes-libretro-picodrive')
-pkgver=1263
+pkgver=2363
 pkgrel=1
 epoch=1
 pkgdesc="Sega Master System/MegaDrive/Genesis/Mega CD/32X emulator for RetroArch"
@@ -7,13 +7,19 @@ arch=('armv7h')
 license=('Custom')
 groups=('pes')
 depends=('pes-retroarch')
-_commit='c1ee525ac9fbd5f091a2cf34879131f3e00bf176'
+_commit='570319349588288f64c676123244acdb0be33881'
 source=("libretro-picodrive::git+https://github.com/libretro/picodrive.git#commit=${_commit}")
 sha256sums=('SKIP')
 
 pkgver() {
   cd libretro-picodrive
   git rev-list --count HEAD
+}
+
+prepare() {
+    cd libretro-picodrive
+    git submodule init
+    git submodule update
 }
 
 build() {
